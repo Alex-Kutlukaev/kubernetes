@@ -1,0 +1,29 @@
+name: Vasiliy
+name2: Vasiliy"
+name3: Vasili'
+
+age: 30
+
+user:
+  name: Vasiliy
+  age: 30
+    
+users1:
+- name: Vasiliy
+  age: 30
+- name: Kate
+  age: 24
+
+users2:
+- Vasiliy
+- Kate
+
+users3: ["Vasiliy","Kate"]
+
+multiline: | 
+  Это большой текст
+  тут его надо использовать
+
+singleline: > 
+  Это большой текст
+  тут его надо использовать
