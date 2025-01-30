@@ -5,8 +5,8 @@ metadata:
 spec:
   type: NodePort
   selector:
-    components: conv-app
+    components: frontend
   ports:
   - port: 3000
     targetPort: 80
-    nodePort: 31300
+    nodePort: 31200
