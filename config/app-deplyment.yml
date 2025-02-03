@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: conv-app-deployment #задаем имя деплоймента
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       components: frontend  
@@ -14,7 +14,7 @@ spec:
         components: frontend
     spec:
       containers:
-       - name: conv-app
+       - name: short-app
          image: antonlarichev/conv-app:1.2
          resources:
           limits:
@@ -22,3 +22,4 @@ spec:
             cpu: "100m"
          ports:
           - containerPort: 80
+ 
