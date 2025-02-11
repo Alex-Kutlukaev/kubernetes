@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: conv-app-deployment #задаем имя деплоймента
+  name: short-app-deployment #задаем имя деплоймента
 spec:
   replicas: 1
   selector:
@@ -9,17 +9,17 @@ spec:
       components: frontend  
   template:  #задаем шаблон
     metadata:
-      name: conv-app
+      name: short-app
       labels:
         components: frontend
     spec:
       containers:
        - name: short-app
-         image: antonlarichev/conv-app:1.2
+         image: antonlarichev/short-app:v1.4
          resources:
           limits:
-            memory: "128Mi"
-            cpu: "100m"
+            memory: "500Mi"
+            cpu: "200m"
          ports:
           - containerPort: 80
  
