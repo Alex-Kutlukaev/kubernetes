@@ -25,8 +25,8 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: rabbitmq-secret
-                key: RABBITMQ_USER
-          - name: RABBITMQ_DEFAULT_PASS
+                key: RABBITMQ_DEFAULT_USER
+          - name: RABBITMQ_PASS
             valueFrom:
               secretKeyRef:
                 name: rabbitmq-secret
