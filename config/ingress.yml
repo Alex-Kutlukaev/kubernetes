@@ -16,13 +16,22 @@ spec:
         path: "/"
         backend:
           service:
-            name: short-app-clusterip
+            name: conv-app-clusterip
             port: 
               number: 80
       - pathType: Prefix
         path: "/api"
         backend:
           service:
-            name: short-api-clusterip
+            name: conv-api-clusterip
             port: 
               number: 3000
+      - path: "/uploads"
+        pathType: Prefix
+        backend:
+          service:
+            name: conv-api-clusterip
+            port:
+              number: 3000
+      
+      
