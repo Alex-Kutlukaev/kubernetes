@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: conv-app-port
+  name: short-app-port
 spec:
   type: NodePort
   selector:
-    components: conv-app
+    components: frontend
   ports:
   - port: 3000
     targetPort: 80

@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name}}-deployment #задаем имя деплоймента
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      components: {{ .Values.app.components}}  
+  template:  #задаем шаблон
+    metadata:
+      name: {{ .Values.app.name}}
+      labels:
+        components: {{ .Values.app.components}}
+    spec:
+      containers:
+       - name: {{ .Values.app.name}}
+         image: "{{ .Values.app.image}}:{{ .Values.app.version}}"
+         resources:
+          limits:
+            memory: {{ .Values.app.limits.memory}}
+            cpu: {{ .Values.app.limits.cpu}}
+         ports:
+          - containerPort: {{ .Values.app.port}}
+         env:
+            - name: VITE_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  name: conv-app-configmap
+                  key: VITE_DOMAIN
+ 

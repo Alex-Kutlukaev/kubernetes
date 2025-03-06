@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.rabbitmq.name}}-deployment
+spec:
+  selector:
+    matchLabels:
+      components: {{ .Values.rabbitmq.name}}
+  template:
+    metadata:
+      labels:
+        components: {{ .Values.rabbitmq.name}}
+    spec:
+      containers:
+      - name: {{ .Values.rabbitmq.name}}
+        image: "{{ .Values.rabbitmq.image}}:{{ .Values.rabbitmq.version}}"
+        resources:
+          limits:
+            memory: {{ .Values.rabbitmq.limits.memory}}
+            cpu: {{ .Values.rabbitmq.limits.cpu}}
+        ports:
+        - containerPort: {{ .Values.rabbitmq.port}}
+        env:
+          - name: RABBITMQ_DEFAULT_USER
+            valueFrom:
+              secretKeyRef:
+                key: AMQP_USER
+                name: rabbitmq-secret
+          - name: RABBITMQ_DEFAULT_PASS
+            valueFrom:
+              secretKeyRef:
+                key: AMQP_PASSWORD
+                name: rabbitmq-secret
+        volumeMounts:
+            - name: rabbitmq-data
+              mountPath: /var/lib/rabbitmq
+      volumes:
+        - name: {{ .Values.rabbitmq.name}}-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.rabbitmq.name}}-pvc
